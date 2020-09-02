@@ -1,0 +1,31 @@
+﻿@model ProjectBank.Models.Customer
+@{
+    ViewBag.Title = "EnterOTP";
+}
+
+<h2>EnterOTP</h2>
+
+<input type="text" id="enterOTP" placeholder="Enter OTP" class="form-control" /><br />
+<a href="a" onclick="VerifyOTP()" class="btn btn-success">Okay</a>
+
+<script>
+    var VerifyOTP = function () {
+        var otp = $("#enterOTP").val();
+        $.ajax({
+            url: "/Customer/VerifyOTP",
+            data: { otp: otp },
+            type: "post",
+            success: function (data) {
+                debugger
+                if (data == true) {
+                    alert("Verification Successful!");
+                    window.location = "/Customer/Create";
+                }
+                else {
+                    alert("Verification Failed");
+                }
+            }
+        })
+    }
+</script> 
+
